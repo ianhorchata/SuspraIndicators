@@ -4,6 +4,18 @@ This is a prototype web application for calculating a Suspra Score. The emphasis
 is on correct implementation of the calculation and basic functionality for
 data entry rather than cosmetics.
 
+## Running the Code
+
+In a terminal, install the project dependencies (only need do this once):
+
+`npm install`
+
+Start the development server:
+
+`npm run dev -- -o`
+
+## System Architecture
+
 The app is written in
 [TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html). This is
 becoming the industry standard. Many editors and IDEs can be configured to
