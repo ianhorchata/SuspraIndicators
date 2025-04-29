@@ -1,3 +1,7 @@
+## 0.0.3
+
+- edit button for property details
+
 ## 0.0.2
 
 - instructions for upgrading npm to 18
