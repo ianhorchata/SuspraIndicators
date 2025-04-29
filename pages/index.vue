@@ -2,6 +2,7 @@
   const pathways = [
     { name: 'Community', link: 'community', indicators: useCommunityIndicators(), score: useCommunityScore(), started: useCommunityStarted() },
     { name: 'Food', link: 'food', indicators: useFoodIndicators(), score: useFoodScore(), started: useFoodStarted() },
+    { name: 'Water', link: 'water', indicators: useWaterIndicators(), score: useWaterScore(), started: useWaterStarted() },
   ];
   const assessment = useAssessment();
   const assessmentStarted = useAssessmentStarted();
