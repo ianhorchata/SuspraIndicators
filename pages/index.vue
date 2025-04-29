@@ -2,9 +2,11 @@
   const pathways = [
     { name: 'Community', link: 'community', indicators: useCommunityIndicators(), score: useCommunityScore(), started: useCommunityStarted() },
     { name: 'Food', link: 'food', indicators: useFoodIndicators(), score: useFoodScore(), started: useFoodStarted() },
+    { name: 'Water', link: 'water', indicators: useWaterIndicators(), score: useWaterScore(), started: useWaterStarted() },
   ];
   const assessment = useAssessment();
   const assessmentStarted = useAssessmentStarted();
+  const isEditing = ref(false);
   const totalScore = computed(() => {
     let scores = new Map()
     for (const pathway of pathways) {
@@ -12,13 +14,11 @@
     }
     return suspraScore(scores);
   });
-
   const assessmentTypes = new Map([
     ['quick', 'Quick'],
     ['regular', 'Regular'],
     ['detailed', 'Detailed'],
   ]);
-
   const street = ref();
   const state = ref();
   const country = ref();
@@ -48,12 +48,29 @@
     a.mode = 'regular';
     assessment.value = a;
     saveAssessment(assessment);
+    isEditing.value = false;
+  }
+
+  function editDetails() {
+    // Populate form fields with current assessment data
+    street.value = assessment.value.address.street;
+    state.value = assessment.value.address.state;
+    country.value = assessment.value.address.country;
+    postalCode.value = assessment.value.address.postalCode || '';
+    occupancy.value = assessment.value.occupancy;
+    totalArea.value = assessment.value.totalArea;
+    buildingArea.value = assessment.value.buildingArea;
+    buildingVolume.value = assessment.value.buildingVolume;
+    startDate.value = assessment.value.startDate;
+    endDate.value = assessment.value.endDate;
+    
+    // Enable editing mode
+    isEditing.value = true;
   }
 </script>
-
 <template>
   <h1>Suspra Score Calculator</h1>
-  <div v-if="!assessmentStarted">
+  <div v-if="!assessmentStarted || isEditing">
     <p>Start a regular assessment of your home.</p>
     <form @submit.prevent="startAssessment" class="flex-vertical">
       <p class="my-1">Address</p>
@@ -88,7 +105,8 @@
       <label>
         End date: <input type="text" required v-model="endDate">
       </label>
-      <input type="submit" class="ms-1 x-10">
+      <input type="submit" class="ms-1 x-10" :value="isEditing ? 'Update Details' : 'Submit'">
+      <button v-if="isEditing" type="button" class="ms-1 x-10" @click="isEditing = false">Cancel</button>
     </form>
   </div>
   <div v-else>
@@ -97,6 +115,7 @@
       {{ assessment.address.street }},
       {{ assessment.address.state }},
       {{ assessment.address.country }}
+      <button class="ms-1" @click="editDetails">Edit Details</button>
     </p>
     <div class="grid">
       <p>Pathway</p>
@@ -113,27 +132,22 @@
     </div>
   </div>
 </template>
-
 <style scoped>
 .flex-vertical {
   display: flex;
   flex-direction: column;
 }
-
 .grid {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr;
 }
-
 .ms-1 {
   margin-block-start: 0.25rem;
 }
-
 .my-1 {
   margin-block-start: 0.25rem;
   margin-block-end: 0.25rem;
 }
-
 .x-10 {
   width: 10rem;
 }
