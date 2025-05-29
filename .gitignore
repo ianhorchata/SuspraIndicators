@@ -1,9 +1,7 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
+# AI
+FILES.txt
+
+# Dev/build outputs
 dist
 
 # Node dependencies
@@ -17,6 +15,7 @@ logs
 .DS_Store
 .fleet
 .idea
+.vscode
 
 # Local env files
 .env

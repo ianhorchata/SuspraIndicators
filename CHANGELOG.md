@@ -1,3 +1,25 @@
+## 0.0.9
+
+- switch to straight vue and remove nuxt
+
+## 0.0.8
+
+- habitat pathway
+- ian was here
+
+## 0.0.7
+
+- goods pathway
+
+## 0.0.6
+
+- energy pathway
+- Everett was here
+
+## 0.0.5
+
+- movement pathway
+
 ## 0.0.4
 
 - water pathway
