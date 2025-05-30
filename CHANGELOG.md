@@ -1,3 +1,7 @@
+## 0.0.10
+
+- adding REQUIREMENTS.md notes from Zoom meeting with Ray and kids
+
 ## 0.0.9
 
 - switch to straight vue and remove nuxt
