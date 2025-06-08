@@ -1,10 +1,12 @@
 <template>
   <div>
     <h2 v-if="name">Welcome, {{ name }}!</h2>
-    <form v-else @submit.prevent="saveName">
+    <button v-if="name && !editing" @click="editName">Change Name</button>
+    <form v-if="!name || editing" @submit.prevent="saveName">
       <label for="username">Enter your name:</label>
       <input id="username" v-model="inputName" required />
       <button type="submit">Save</button>
+      <button v-if="editing" type="button" @click="cancelEdit">Cancel</button>
     </form>
   </div>
 </template>
@@ -18,6 +20,7 @@ const storeName = 'user-info'
 
 const name = ref('')
 const inputName = ref('')
+const editing = ref(false)
 
 async function getDB() {
   return openDB(dbName, 1, {
@@ -38,6 +41,16 @@ async function saveName() {
   const db = await getDB()
   await db.put(storeName, inputName.value, 'name')
   name.value = inputName.value
+  editing.value = false
+}
+
+function editName() {
+  inputName.value = name.value
+  editing.value = true
+}
+
+function cancelEdit() {
+  editing.value = false
 }
 
 onMounted(loadName)
