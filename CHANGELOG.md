@@ -1,3 +1,7 @@
+## 0.0.10
+
+- adding a persistence layer so your changes are saved
+
 ## 0.0.9
 
 - switch to straight vue and remove nuxt
