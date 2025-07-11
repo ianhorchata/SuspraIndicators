@@ -1,19 +1,45 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterView, RouterLink } from 'vue-router'
+const drawer = ref(false)
+const pathwayItems = [
+  { to: '/community', label: 'Community' },
+  { to: '/food', label: 'Food' },
+  { to: '/water', label: 'Water' },
+  { to: '/movement', label: 'Movement' },
+  { to: '/energy', label: 'Energy' },
+  { to: '/goods', label: 'Goods' },
+  { to: '/habitat', label: 'Habitat' },
+  { to: '/score', label: 'Score' },
+  { to: '/user', label: 'User' },
+]
 </script>
 
 <template>
-  <nav style="padding: 1em; background: #f5f5f5; display: flex; gap: 1em; align-items: center;">
-    <router-link to="/" style="font-weight: bold;">Home</router-link>
-    <router-link to="/user">User</router-link>
-    <router-link to="/community">Community</router-link>
-    <router-link to="/food">Food</router-link>
-    <router-link to="/water">Water</router-link>
-    <router-link to="/movement">Movement</router-link>
-    <router-link to="/energy">Energy</router-link>
-    <router-link to="/goods">Goods</router-link>
-    <router-link to="/habitat">Habitat</router-link>
-    <router-link to="/score">Score</router-link>
-  </nav>
-  <RouterView />
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-app-bar-nav-icon @click="drawer = !drawer" />
+      <v-toolbar-title>SuspraIndicators</v-toolbar-title>
+    </v-app-bar>
+    <v-navigation-drawer app v-model="drawer">
+      <v-list>
+        <v-list-item>
+          <RouterLink to="/">
+            <v-list-item-title>Home</v-list-item-title>
+          </RouterLink>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item v-for="item in pathwayItems" :key="item.to">
+          <RouterLink :to="item.to">
+            <v-list-item-title>{{ item.label }}</v-list-item-title>
+          </RouterLink>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-main>
+      <v-container>
+        <RouterView />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
