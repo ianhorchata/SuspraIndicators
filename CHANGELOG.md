@@ -1,3 +1,6 @@
+## 0.0.16
+- Add food pathway questions
+
 ## 0.0.15
 
 - hide app bar until after survey is completed
