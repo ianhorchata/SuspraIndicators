@@ -76,7 +76,7 @@ function onNext() {
     }
   }
   // Save data to IndexedDB (optional, can be expanded)
-  router.push({ name: 'habitat' })
+  router.push({ name: 'goods' })
 }
 function onBack() {
   router.push({ name: 'water' })

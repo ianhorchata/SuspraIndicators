@@ -83,7 +83,7 @@ function onNext() {
   router.push({ name: 'movement' })
 }
 function onBack() {
-  router.push({ name: 'energy' })
+  router.push({ name: 'goods' })
 }
 </script>
 

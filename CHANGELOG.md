@@ -1,3 +1,6 @@
+## 0.0.22
+-Add goods pathway
+
 ## 0.0.21
 -Add a community pathway
 
