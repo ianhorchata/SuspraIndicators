@@ -1,7 +1,52 @@
 <script setup>
-import { ref } from 'vue'
-import { RouterView, RouterLink } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { RouterView, RouterLink, useRoute } from 'vue-router'
+import { openDB } from 'idb'
+
+const route = useRoute()
 const drawer = ref(false)
+const surveyCompleted = ref(false)
+
+// Check if survey has been completed by looking for data in IndexedDB
+async function checkSurveyCompletion() {
+  try {
+    const db = await openDB('SuspraDB', 1)
+    
+    // First check for explicit completion flag
+    if (db.objectStoreNames.contains('survey-status')) {
+      const status = await db.get('survey-status', 'status')
+      if (status && status.completed) {
+        surveyCompleted.value = true
+        return
+      }
+    }
+    
+    // Fallback: check if we have data in survey sections
+    const storeNames = ['food', 'water', 'energy', 'goods', 'habitat', 'movement', 'community']
+    
+    let hasData = false
+    for (const storeName of storeNames) {
+      if (db.objectStoreNames.contains(storeName)) {
+        const data = await db.get(storeName, storeName)
+        if (data) {
+          hasData = true
+          break
+        }
+      }
+    }
+    
+    surveyCompleted.value = hasData
+  } catch (error) {
+    console.log('No survey data found or database not accessible')
+    surveyCompleted.value = false
+  }
+}
+
+// Show app bar only after survey has been completed
+const showAppBar = computed(() => {
+  return surveyCompleted.value
+})
+
 const pathwayItems = [
   { to: '/community', label: 'Community' },
   { to: '/food', label: 'Food' },
@@ -13,15 +58,17 @@ const pathwayItems = [
   { to: '/score', label: 'Score' },
   { to: '/user', label: 'User' },
 ]
+
+onMounted(checkSurveyCompletion)
 </script>
 
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar v-if="showAppBar" app color="primary" dark>
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>SuspraIndicators</v-toolbar-title>
     </v-app-bar>
-    <v-navigation-drawer app v-model="drawer">
+    <v-navigation-drawer v-if="showAppBar" app v-model="drawer">
       <v-list>
         <v-list-item>
           <RouterLink to="/">

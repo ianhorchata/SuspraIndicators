@@ -1,3 +1,7 @@
+## 0.0.15
+
+- hide app bar until after survey is completed
+
 ## 0.0.14
 
 - start over button
