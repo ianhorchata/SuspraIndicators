@@ -1,3 +1,7 @@
+## 0.0.14
+
+- start over button
+
 ## 0.0.13
 - Added a screener page after intro screen
 
