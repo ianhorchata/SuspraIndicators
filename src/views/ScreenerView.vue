@@ -1,7 +1,18 @@
 <template>
   <v-container class="d-flex flex-column align-center justify-center" style="min-height: 100vh; max-width: 600px;">
     <v-card elevation="8" class="pa-6" style="width: 100%;">
-      <h2 class="mb-4">About Your Household</h2>
+      <div class="d-flex justify-space-between align-center mb-4">
+        <h2>About Your Household</h2>
+        <v-btn 
+          color="error" 
+          variant="outlined" 
+          size="small"
+          @click="startOver"
+        >
+          Start Over
+        </v-btn>
+      </div>
+      
       <form @submit.prevent="onNext">
         <!-- S1 -->
         <v-text-field
@@ -60,6 +71,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { openDB } from 'idb'
 
 const router = useRouter()
 
@@ -88,6 +100,36 @@ const s1aOptions = [
 const s2SpecialOptions = [
   { text: 'Web Blank', value: 97 },
 ]
+
+async function startOver() {
+  try {
+    // Clear user database
+    const userDB = await openDB('user-db', 1)
+    await userDB.clear('user-info')
+    
+    // Clear Suspra database if it exists
+    try {
+      const suspraDB = await openDB('SuspraDB', 1)
+      const storeNames = ['food', 'water', 'energy', 'goods', 'habitat', 'movement', 'community', 'screener']
+      
+      for (const storeName of storeNames) {
+        if (suspraDB.objectStoreNames.contains(storeName)) {
+          await suspraDB.clear(storeName)
+        }
+      }
+    } catch (error) {
+      // SuspraDB might not exist yet, which is fine
+      console.log('SuspraDB not found or already cleared')
+    }
+    
+    // Navigate back to intro screen
+    router.push({ name: 'home' })
+  } catch (error) {
+    console.error('Error starting over:', error)
+    // Still navigate back even if clearing fails
+    router.push({ name: 'home' })
+  }
+}
 
 function onNext() {
   // Placeholder: Save data and go to next section
