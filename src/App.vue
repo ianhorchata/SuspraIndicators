@@ -37,7 +37,7 @@ const pathwayItems = [
       </v-list>
     </v-navigation-drawer>
     <v-main>
-      <v-container>
+      <v-container fluid>
         <RouterView />
       </v-container>
     </v-main>
