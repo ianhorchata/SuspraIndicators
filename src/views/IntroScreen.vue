@@ -35,6 +35,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { openDB } from 'idb'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const emit = defineEmits(['name-saved'])
 
 const dbName = 'user-db'
@@ -59,7 +61,7 @@ async function loadName() {
 async function saveName() {
   const db = await getDB()
   await db.put(storeName, inputName.value, 'name')
-  emit('name-saved', inputName.value)
+  router.push({ name: 'screener' })
 }
 
 onMounted(loadName)

@@ -1,4 +1,7 @@
-## 0.012
+## 0.0.13
+- Added a screener page after intro screen
+
+## 0.0.12
 - Adding intro screen
 
 ## 0.0.11
