@@ -80,7 +80,7 @@ async function startOver() {
 
 function onNext() {
   // Save data to IndexedDB (optional, can be expanded)
-  router.push({ name: 'score' })
+  router.push({ name: 'movement' })
 }
 function onBack() {
   router.push({ name: 'energy' })

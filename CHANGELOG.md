@@ -1,3 +1,6 @@
+## 0.0.20
+-Add a movement pathway
+
 ## 0.0.19
 -Add habitat pathway
 
