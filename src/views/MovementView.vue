@@ -46,7 +46,7 @@ async function startOver() {
 
 function onNext() {
   // Save data to IndexedDB (optional, can be expanded)
-  router.push({ name: 'goods' })
+  router.push({ name: 'community' })
 }
 function onBack() {
   router.push({ name: 'habitat' })
