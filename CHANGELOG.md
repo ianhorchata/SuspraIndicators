@@ -1,3 +1,7 @@
+## 0.0.11
+
+- fixing formatting issue
+
 ## 0.0.10
 
 - adding a persistence layer so your changes are saved
