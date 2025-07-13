@@ -1,6 +1,8 @@
-## 0.0.11
+## 0.012
+- Adding intro screen
 
-- fixing formatting issue
+## 0.0.11
+-Editing user interface and make text go all the way across the screen
 
 ## 0.0.10
 
