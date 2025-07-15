@@ -1,3 +1,6 @@
+## 0.0.23
+- Merged in UserInterface branch from Everett, resolved merge conflicts
+
 ## 0.0.22
 -Add goods pathway
 
@@ -39,6 +42,7 @@
 ## 0.0.10
 
 - adding a persistence layer so your changes are saved
+- adding REQUIREMENTS.md notes from Zoom meeting with Ray and kids
 
 ## 0.0.9
 
