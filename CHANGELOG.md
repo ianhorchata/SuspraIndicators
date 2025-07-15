@@ -1,3 +1,7 @@
+## 0.0.11
+
+- add 'ideal world' resource usage
+
 ## 0.0.10
 
 - adding a persistence layer so your changes are saved
