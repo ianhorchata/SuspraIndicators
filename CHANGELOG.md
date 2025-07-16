@@ -1,3 +1,6 @@
+## 0.0.24
+- add 'ideal world' resource usage
+
 ## 0.0.23
 - Merged in UserInterface branch from Everett, resolved merge conflicts
 
