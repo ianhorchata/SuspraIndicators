@@ -1,19 +1,92 @@
 <script setup>
-import { RouterView, RouterLink } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { RouterView, RouterLink, useRoute } from 'vue-router'
+import { openDB } from 'idb'
+
+const route = useRoute()
+const drawer = ref(false)
+const surveyCompleted = ref(false)
+
+// Check if survey has been completed by looking for data in IndexedDB
+async function checkSurveyCompletion() {
+  try {
+    const db = await openDB('SuspraDB', 1)
+    
+    // First check for explicit completion flag
+    if (db.objectStoreNames.contains('survey-status')) {
+      const status = await db.get('survey-status', 'status')
+      if (status && status.completed) {
+        surveyCompleted.value = true
+        return
+      }
+    }
+    
+    // Fallback: check if we have data in survey sections
+    const storeNames = ['food', 'water', 'energy', 'goods', 'habitat', 'movement', 'community']
+    
+    let hasData = false
+    for (const storeName of storeNames) {
+      if (db.objectStoreNames.contains(storeName)) {
+        const data = await db.get(storeName, storeName)
+        if (data) {
+          hasData = true
+          break
+        }
+      }
+    }
+    
+    surveyCompleted.value = hasData
+  } catch (error) {
+    console.log('No survey data found or database not accessible')
+    surveyCompleted.value = false
+  }
+}
+
+// Show app bar only after survey has been completed
+const showAppBar = computed(() => {
+  return surveyCompleted.value
+})
+
+const pathwayItems = [
+  { to: '/community', label: 'Community' },
+  { to: '/food', label: 'Food' },
+  { to: '/water', label: 'Water' },
+  { to: '/movement', label: 'Movement' },
+  { to: '/energy', label: 'Energy' },
+  { to: '/goods', label: 'Goods' },
+  { to: '/habitat', label: 'Habitat' },
+  { to: '/score', label: 'Score' },
+  { to: '/user', label: 'User' },
+]
+
+onMounted(checkSurveyCompletion)
 </script>
 
 <template>
-  <nav style="padding: 1em; background: #f5f5f5; display: flex; gap: 1em; align-items: center;">
-    <router-link to="/" style="font-weight: bold;">Home</router-link>
-    <router-link to="/user">User</router-link>
-    <router-link to="/community">Community</router-link>
-    <router-link to="/food">Food</router-link>
-    <router-link to="/water">Water</router-link>
-    <router-link to="/movement">Movement</router-link>
-    <router-link to="/energy">Energy</router-link>
-    <router-link to="/goods">Goods</router-link>
-    <router-link to="/habitat">Habitat</router-link>
-    <router-link to="/score">Score</router-link>
-  </nav>
-  <RouterView />
+  <v-app>
+    <v-app-bar v-if="showAppBar" app color="primary" dark>
+      <v-app-bar-nav-icon @click="drawer = !drawer" />
+      <v-toolbar-title>SuspraIndicators</v-toolbar-title>
+    </v-app-bar>
+    <v-navigation-drawer v-if="showAppBar" app v-model="drawer">
+      <v-list>
+        <v-list-item>
+          <RouterLink to="/">
+            <v-list-item-title>Home</v-list-item-title>
+          </RouterLink>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item v-for="item in pathwayItems" :key="item.to">
+          <RouterLink :to="item.to">
+            <v-list-item-title>{{ item.label }}</v-list-item-title>
+          </RouterLink>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-main>
+      <v-container fluid>
+        <RouterView />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
