@@ -60,6 +60,9 @@ const pathwayItems = [
 ]
 
 onMounted(checkSurveyCompletion)
+
+// Import version from version.txt using Vite's raw import
+import version from '../version.txt?raw'
 </script>
 
 <template>
@@ -88,5 +91,21 @@ onMounted(checkSurveyCompletion)
         <RouterView />
       </v-container>
     </v-main>
+    <div class="app-version-footer">
+      v{{ version.trim() }}
+    </div>
   </v-app>
 </template>
+
+<style>
+.app-version-footer {
+  position: fixed;
+  right: 16px;
+  bottom: 8px;
+  color: #888;
+  font-size: 0.9em;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+}
+</style>
