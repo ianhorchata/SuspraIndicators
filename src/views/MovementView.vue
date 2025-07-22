@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { openDB } from 'idb'
 
 const router = useRouter()
-
+console.log("hello, running from the top!")
 const m1 = ref(null)
 const m3 = ref('')
 const m4 = ref('')
@@ -12,6 +12,11 @@ const m5 = ref('')
 const m6 = ref(null)
 const m6Other = ref('')
 const m7 = ref('')
+
+const answers = {
+  m1: ref(null),
+  m3: ref('')
+}
 
 const m1Options = [
   { text: '0-25%', value: 1 },
@@ -46,6 +51,8 @@ async function startOver() {
 
 function onNext() {
   // Save data to IndexedDB (optional, can be expanded)
+  
+
   router.push({ name: 'community' })
 }
 function onBack() {
@@ -63,14 +70,14 @@ function onBack() {
       <form @submit.prevent="onNext">
         <!-- M1 -->
         <v-select
-          v-model="m1"
+          v-model="answers.m1"
           :items="m1Options"
           label="Of all the trips you take in a typical week, what percent are active (meaning walking, biking or taking public transit)?"
           class="mb-4"
         />
         <!-- M3: About how many miles does your household drive in an average month? -->
         <v-text-field
-          v-model="m3"
+          v-model="answers.m3"
           label="About how many miles does your household drive in an average month?"
           type="number"
           min="0"

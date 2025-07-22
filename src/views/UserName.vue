@@ -17,6 +17,7 @@ import { openDB } from 'idb'
 
 const dbName = 'user-db'
 const storeName = 'user-info'
+ 
 
 const name = ref('')
 const inputName = ref('')

@@ -7,6 +7,8 @@ const route = useRoute()
 const drawer = ref(false)
 const surveyCompleted = ref(false)
 
+
+
 // Check if survey has been completed by looking for data in IndexedDB
 async function checkSurveyCompletion() {
   try {
@@ -41,6 +43,7 @@ async function checkSurveyCompletion() {
     surveyCompleted.value = false
   }
 }
+
 
 // Show app bar only after survey has been completed
 const showAppBar = computed(() => {
