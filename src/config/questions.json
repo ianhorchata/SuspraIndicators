@@ -1,0 +1,988 @@
+{
+  "metadata": {
+    "title": "Quick-Start Sustainability Score Survey",
+    "globalNotes": {
+      "skipMessage": "<MESSAGE>",
+      "bodyColor": "<COLOR>",
+      "questionColor": "<COLOR>",
+      "preferredFonts": "<PREFERRED FONTS>",
+      "preferredSize": "<PREFERRED SIZE>",
+      "hideSectionTitles": true,
+      "skipCode": "99",
+      "buttons": ["Next", "Finish Later", "Back"],
+      "mobileOptimized": true
+    }
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "title": "INTRO",
+      "type": "information",
+      "content": [
+        "How long it will take to do the survey (minimum)",
+        "Privacy (all data stored on your computer, not uploaded to the cloud)",
+        "Explain who is Sustainable Practice (the publisher)",
+        "Why take the survey",
+        "What to have handy to answer the survey (e.g. electricity bills)",
+        "What happens to results (stays on this computer, up to you what happens next)",
+        "You can update your answers and see if your score improves",
+        "First pass is high level, you can dig deeper if you want (but you don't have to)"
+      ]
+    },
+    {
+      "id": "screener",
+      "title": "SCREENER",
+      "subtitle": "To begin, we need some information about the property you live in.",
+      "questions": [
+        {
+          "id": "S1",
+          "text": "What is the square footage of your current house or apartment?",
+          "note": "Do not include any outdoor space.",
+          "type": "number",
+          "placeholder": "e.g. 1200",
+          "validation": {
+            "min": 0,
+            "message": "Must be a positive number"
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't Know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "S1a",
+          "text": "Which of the following best describes where you live?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Apartment in a shared building" },
+            { "value": 2, "text": "Condominium or townhouse (attached unit you own)" },
+            { "value": 3, "text": "Single-family detached house" },
+            { "value": 4, "text": "Duplex, triplex, or row house (shared walls, separate units)" },
+            { "value": 5, "text": "Mobile or manufactured home" },
+            { "value": 6, "text": "Tiny home or accessory dwelling unit (ADU)" },
+            { "value": 96, "text": "Other (please specify)", "requiresInput": true },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "S2",
+          "text": "Including yourself, how many people currently live or stay in your household?",
+          "type": "number",
+          "placeholder": "e.g. 3",
+          "validation": {
+            "min": 1,
+            "message": "Must be at least 1"
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "title": "FOOD",
+      "questions": [
+        {
+          "id": "F1",
+          "text": "About how much money does your household spend on food and beverages in a typical week?",
+          "note": "Please include groceries, takeout, restaurants, alcohol, and all other sources of food or drink.",
+          "type": "currency",
+          "placeholder": "$___ per week",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "F1a",
+          "text": "Would you say it is",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Less than $50" },
+            { "value": 2, "text": "$50–$99" },
+            { "value": 3, "text": "$100–$149" },
+            { "value": 4, "text": "$150–$199" },
+            { "value": 5, "text": "$200–$299" },
+            { "value": 6, "text": "$300 or more" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "F1 == 97 OR F1 == 98"
+        },
+        {
+          "id": "F2",
+          "text": "In a typical week, about how much of what you drink is tap water (not bottled or filtered)?",
+          "note": "Please think about all drinks—water, soda, coffee, etc.",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "None (0%)" },
+            { "value": 2, "text": "A little (1–25%)" },
+            { "value": 3, "text": "Some (26–50%)" },
+            { "value": 4, "text": "Most (51–75%)" },
+            { "value": 5, "text": "Nearly all (76–99%)" },
+            { "value": 6, "text": "All (100%)" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "F3",
+          "text": "How often do you eat meals that include meat (such as beef, pork, poultry, etc.) in a typical week?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Never" },
+            { "value": 2, "text": "1–2 times per week" },
+            { "value": 3, "text": "3–4 times per week" },
+            { "value": 4, "text": "5–6 times per week" },
+            { "value": 5, "text": "Once per day (7 times/week)" },
+            { "value": 6, "text": "More than once per day (8+ times/week)" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "F4",
+          "text": "How often do you eat beef?",
+          "note": "Include all forms such as beef steak, ground beef, burgers, roasts, etc.",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Never" },
+            { "value": 2, "text": "A few times per year" },
+            { "value": 3, "text": "About once a month" },
+            { "value": 4, "text": "A few times per month" },
+            { "value": 5, "text": "Multiple times per week" }
+          ],
+          "askIf": "F3 > 1"
+        },
+        {
+          "id": "F4a",
+          "text": "How much of the meat you eat is **certified organic**?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "None" },
+            { "value": 2, "text": "A little (1–25%)" },
+            { "value": 3, "text": "Some (26–50%)" },
+            { "value": 4, "text": "Most (51–75%)" },
+            { "value": 5, "text": "Nearly all or all (76–100%)" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "F3 > 1"
+        },
+        {
+          "id": "F5",
+          "text": "In a typical week, how much of the food that you eat is **certified organic** or grown organically in your garden?",
+          "note": "Include food labeled \"USDA Organic\" or equivalent.",
+          "helpText": {
+            "title": "What does \"certified organic\" mean?",
+            "content": "Certified organic food is grown and processed without:\n\n• Synthetic pesticides or fertilizers\n• Genetically modified organisms (GMOs)\n• Artificial colors or preservatives\n• Antibiotics or hormones (in meat and dairy)\n\nIn the U.S., look for the USDA Organic label — this means the food has been inspected and meets national organic standards. Other legitimate certifications may appear on some products, but they follow similar rules.\n\nThis does not include foods labeled only \"natural,\" \"non-GMO,\" or \"pesticide-free\" unless they are also certified organic."
+          },
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "None" },
+            { "value": 2, "text": "A little (1–25%)" },
+            { "value": 3, "text": "Some (26–50%)" },
+            { "value": 4, "text": "Most (51–75%)" },
+            { "value": 5, "text": "Nearly all or all (76–100%)" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "F5a",
+          "text": "On average, about 6% of the food a person in the U.S. buys each week is certified organic. Based on that, do you think you buy:",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "More than 6% organic" },
+            { "value": 2, "text": "About 6% organic" },
+            { "value": 3, "text": "Less than 6% organic" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "F5 == 97 OR F5 == 98"
+        },
+        {
+          "id": "F6",
+          "text": "The average U.S. household throws away about 3 pounds of edible food each week. That's roughly a few meals' worth of food—like spoiled fruit, uneaten leftovers, or expired items. It does not include scraps like peels or bones.\n\nDo you think your household wastes:",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "More than that" },
+            { "value": 2, "text": "About that amount" },
+            { "value": 3, "text": "Less than that" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "title": "WATER",
+      "subtitle": "The next questions will ask about your household's water use.",
+      "questions": [
+        {
+          "id": "W1",
+          "text": "Do you have access to your household's water bill, or do you know how much water your household uses?",
+          "note": "This is often listed in gallons or cubic feet (CCF) per month on your utility bill.",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes, I have access or know the amount" },
+            { "value": 2, "text": "No, I don't have access and don't know" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "W2",
+          "text": "How much water does your household use in a typical month?",
+          "note": "Enter the number of gallons or cubic feet, as shown on your utility bill. Estimate if unsure.",
+          "type": "dualInput",
+          "inputs": [
+            { "id": "gallons", "label": "gallons per month", "type": "number" },
+            { "id": "cubicFeet", "label": "cubic feet per month", "type": "number" }
+          ],
+          "validation": {
+            "mutuallyExclusive": true,
+            "message": "Please provide the amount in either gallons per month or cubic feet per month, but not both."
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "W1 == 1"
+        },
+        {
+          "id": "W2a",
+          "text": "On average, a U.S. household uses about 9,000 gallons of water per month. That's roughly equal to taking one shower per person per day, flushing the toilet several times a day, doing daily laundry, and running faucets and appliances — for a typical household of 2–3 people.\n\nBased on that, do you think your household uses:",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "More than that" },
+            { "value": 2, "text": "About that amount" },
+            { "value": 3, "text": "Less than that" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "W1 == 2 OR W1 == 97 OR W1 == 98 OR W2 == 97 OR W2 == 98"
+        },
+        {
+          "id": "W3",
+          "text": "How often do you use strong chemical cleaners (like bleach, ammonia, or drain openers) in your home?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Frequently (multiple times per week)" },
+            { "value": 2, "text": "Occasionally (a few times per month)" },
+            { "value": 3, "text": "Rarely (a few times per year)" },
+            { "value": 4, "text": "Never" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "title": "ENERGY",
+      "subtitle": "The next questions will ask about your household's energy use.",
+      "questions": [
+        {
+          "id": "E1",
+          "text": "Do you have access to your household's electricity bill, or do you know how much electricity your household typically uses?",
+          "note": "This is usually listed in kilowatt-hours (kWh) per month on your utility bill.",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes, I have access or know the amount" },
+            { "value": 2, "text": "No, I don't have access and don't know" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "E2",
+          "text": "How much electricity does your household use in an average year?",
+          "note": "Enter the number of kilowatt-hours (kWh), as shown on your utility bill. Estimate if unsure.",
+          "type": "number",
+          "placeholder": "e.g. 10000",
+          "unit": "kWh per year",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "E1 == 1"
+        },
+        {
+          "id": "E3",
+          "text": "On average, a U.S. household uses about 886 kilowatt-hours (kWh) of electricity per month. That's the equivalent of running central air, lights, and appliances for a family of 2–3 people.\n\nBased on that, do you think your household uses:",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "More than that" },
+            { "value": 2, "text": "About that amount" },
+            { "value": 3, "text": "Less than that" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "E1 == 2 OR E1 == 97 OR E1 == 98 OR E2 == 97 OR E2 == 98"
+        },
+        {
+          "id": "E10",
+          "text": "Does your household have any of these on site electricity generators?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Solar" },
+            { "value": 2, "text": "Wind" },
+            { "value": 3, "text": "Hydro" },
+            { "value": 4, "text": "None" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "E11",
+          "text": "How much does your {system} system generate per year?",
+          "type": "number",
+          "placeholder": "e.g. 5000",
+          "unit": "kWh",
+          "dynamicText": {
+            "system": {
+              "1": "Solar",
+              "2": "Wind", 
+              "3": "Hydro"
+            }
+          },
+          "askIf": "E10 == 1 OR E10 == 2 OR E10 == 3"
+        },
+        {
+          "id": "E4",
+          "text": "Do you burn fuel in your house, vehicles or equipment?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes" },
+            { "value": 2, "text": "No" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "E7",
+          "text": "Which of the following fuel sources do you use?",
+          "note": "Select all that apply",
+          "type": "multiSelect",
+          "options": [
+            { "value": 2, "text": "Natural gas (piped into the home)" },
+            { "value": 3, "text": "Propane (delivered in tanks)" },
+            { "value": 4, "text": "Heating oil / fuel oil" },
+            { "value": 5, "text": "Wood or pellets (e.g., fireplace, wood stove)" },
+            { "value": 6, "text": "Gasoline" },
+            { "value": 7, "text": "Diesel" },
+            { "value": 8, "text": "Kerosene" },
+            { "value": 9, "text": "Biodiesel blends (e.g., B20)" },
+            { "value": 10, "text": "Waste oil" },
+            { "value": 96, "text": "Other", "requiresInput": true },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "E4 == 1"
+        },
+        {
+          "id": "E4_alt",
+          "text": "Do you have access to your household's natural gas or propane bill, or do you know how much gas your household typically uses?",
+          "note": "Gas usage is often listed in therms, cubic feet, or gallons.",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes, I have access or know the amount" },
+            { "value": 2, "text": "No, I don't have access and don't know" },
+            { "value": 3, "text": "My household does not use gas" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "E5",
+          "text": "How much natural gas and/or propane does your household use in a typical month?",
+          "note": "Enter the number of therms, gallons or cubic feet, as shown on your utility bill. Estimate if unsure.",
+          "type": "tripleInput",
+          "inputs": [
+            { "id": "therms", "label": "therms per month", "type": "number" },
+            { "id": "gallons", "label": "gallons per month", "type": "number" },
+            { "id": "cubicFeet", "label": "cubic feet per month", "type": "number" }
+          ],
+          "validation": {
+            "mutuallyExclusive": true,
+            "message": "Please provide the amount in either therms per month, gallons per month or cubic feet per month, but not multiple."
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "E4_alt == 1"
+        },
+        {
+          "id": "E8",
+          "text": "Which is the primary fuel source used for heating your house?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Electricity" },
+            { "value": 2, "text": "Natural gas (piped into the home)" },
+            { "value": 3, "text": "Propane (delivered in tanks)" },
+            { "value": 4, "text": "Heating oil / fuel oil" },
+            { "value": 5, "text": "Wood or pellets (e.g., fireplace, wood stove)" },
+            { "value": 6, "text": "Solar thermal (for hot water or heating)" },
+            { "value": 96, "text": "Other (Specify)", "requiresInput": true },
+            { "value": 7, "text": "None of these" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "E5_selected > 1"
+        },
+        {
+          "id": "E9",
+          "text": "How much do you pay in utilities for gas and electricity combined per month?",
+          "type": "currency",
+          "placeholder": "$___",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "E3 == 97 OR E3 == 98 OR E5 == 97 OR E5 == 98"
+        }
+      ]
+    },
+    {
+      "id": "goods",
+      "title": "GOODS",
+      "subtitle": "The next questions ask about your household's spending on tangible goods. By tangible goods, we mean physical items like clothing, electronics, furniture, appliances, home goods, tools, and personal items — not including food, services (like haircuts or streaming), or digital goods. This does not include borrowing or renting.",
+      "questions": [
+        {
+          "id": "G1",
+          "text": "About how much money do you spend on physical goods (not including food or services or renting items) in a typical 3-month period?",
+          "note": "This includes things like clothes, shoes, furniture, electronics, home goods, tools, and personal items. Please estimate your total household spending for all members.",
+          "type": "currency",
+          "placeholder": "$___ in 3 months",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "G1a",
+          "text": "Would you say",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Less than $250" },
+            { "value": 2, "text": "$250–$499" },
+            { "value": 3, "text": "$500–$999" },
+            { "value": 4, "text": "$1,000–$2,499" },
+            { "value": 5, "text": "$2,500 or more" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G1 == 97 OR G1 == 98"
+        },
+        {
+          "id": "M1",
+          "text": "How many cars does your household have?",
+          "type": "number",
+          "placeholder": "e.g. 2",
+          "validation": {
+            "min": 0,
+            "message": "Must be 0 or greater"
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "M2",
+          "text": "How many of your cars are electric vehicles?",
+          "note": "Only include fully electric vehicles, not hybrids.",
+          "type": "number",
+          "placeholder": "e.g. 1",
+          "validation": {
+            "min": 0,
+            "message": "Must be 0 or greater"
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "M1 > 0"
+        },
+        {
+          "id": "G2",
+          "text": "For each of the following categories, how do you typically buy these items?",
+          "type": "grid",
+          "columns": [
+            { "id": "mostly_new", "text": "Mostly New" },
+            { "id": "mix", "text": "Mix of New & Secondhand" },
+            { "id": "mostly_secondhand", "text": "Mostly Secondhand" },
+            { "id": "dont_buy", "text": "I Don't Buy These" }
+          ],
+          "rows": [
+            { "id": "clothing", "text": "Clothing" },
+            { "id": "furniture", "text": "Furniture" },
+            { "id": "cookware", "text": "Cookware" },
+            { "id": "electronics", "text": "Electronics" },
+            { "id": "appliances", "text": "Appliances" },
+            { "id": "home_goods", "text": "Home goods/decor" },
+            { "id": "tools", "text": "Tools or equipment" },
+            { "id": "vehicles", "text": "Vehicles" },
+            { "id": "other", "text": "Other" }
+          ],
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "G3_a",
+          "text": "Clothing",
+          "subtext": "When buying the following types of products, what kinds of materials do you typically choose? Select the option that best describes your usual choices. Think about the last few items you've purchased in each category.",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Mostly synthetic (e.g., polyester, spandex, nylon, acrylic)" },
+            { "value": 2, "text": "Mostly natural fibers (e.g., cotton, wool, linen)" },
+            { "value": 3, "text": "A mix of both" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G2_clothing != 4"
+        },
+        {
+          "id": "G3_b",
+          "text": "Furniture",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Mostly made from plastic, laminate, or engineered wood" },
+            { "value": 2, "text": "Mostly made from solid wood, metal, or natural materials" },
+            { "value": 3, "text": "Mostly treated with stain resistant or water repellent synthetic coating" },
+            { "value": 4, "text": "A mix" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G2_furniture != 4"
+        },
+        {
+          "id": "G3_c",
+          "text": "Cookware",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Mostly plastic or non-stick (e.g., Teflon)" },
+            { "value": 2, "text": "Mostly stainless steel, cast iron, or glass" },
+            { "value": 3, "text": "A mix of both" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G2_cookware != 4"
+        },
+        {
+          "id": "G3_d",
+          "text": "Electronics",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Unsustainable materials" },
+            { "value": 2, "text": "Mostly (RoHS compliant – means safe to recycle)" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G2_electronics != 4"
+        },
+        {
+          "id": "G3_e",
+          "text": "Appliances",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Unsustainable: lead, refrigerants" },
+            { "value": 2, "text": "Sustainable materials" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G2_appliances != 4"
+        },
+        {
+          "id": "G3_f",
+          "text": "Home Goods and Decor",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Mostly synthetic or plastic (e.g., polyester, vinyl, plastic)" },
+            { "value": 2, "text": "Mostly natural materials (e.g., wood, cotton, wool, glass, metal)" },
+            { "value": 3, "text": "A mix of both" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G2_home_goods != 4"
+        },
+        {
+          "id": "G3_g",
+          "text": "Tools and Equipment",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Mostly plastic or disposable materials" },
+            { "value": 2, "text": "Mostly metal, wood, or durable/high-quality materials" },
+            { "value": 3, "text": "A mix of both" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G2_tools != 4"
+        },
+        {
+          "id": "G5",
+          "text": "Do you have a dryer that vents to the outside?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes" },
+            { "value": 2, "text": "No" },
+            { "value": 3, "text": "Do not use a dryer" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "G3_a == 1"
+        },
+        {
+          "id": "G4",
+          "text": "For each of the following item types, how do you most often get rid of them when you no longer need them?",
+          "type": "grid",
+          "columns": [
+            { "id": "donate_sell", "text": "Donate or Sell" },
+            { "id": "recycle", "text": "Recycle" },
+            { "id": "compost", "text": "Compost" },
+            { "id": "trash", "text": "Trash" },
+            { "id": "divert", "text": "Divert" },
+            { "id": "dont_buy", "text": "I Don't Buy These" }
+          ],
+          "rows": [
+            { "id": "clothing", "text": "Clothing" },
+            { "id": "furniture", "text": "Furniture" },
+            { "id": "cookware", "text": "Cookware" },
+            { "id": "electronics", "text": "Electronics" },
+            { "id": "appliances", "text": "Appliances" },
+            { "id": "home_goods", "text": "Home goods/decor" },
+            { "id": "tools", "text": "Tools or equipment" }
+          ],
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        }
+      ]
+    },
+    {
+      "id": "habitat",
+      "title": "HABITAT",
+      "questions": [
+        {
+          "id": "H1",
+          "text": "To your knowledge, does your current residence have any type of **environmental or sustainability certification** (such as LEED)?",
+          "helpText": {
+            "title": "What Are Building Sustainability Certifications?",
+            "content": "Sustainability certifications recognize buildings that are designed or operated to reduce environmental impact. They may cover things like energy efficiency, water conservation, healthy materials, and indoor air quality.\n\nCommon examples include:\n\n• LEED (Leadership in Energy and Environmental Design): One of the most recognized green building standards in the U.S.\n• ENERGY STAR Certified Homes: Recognized for meeting energy efficiency standards.\n• Passive House / PHIUS: Focuses on extreme energy efficiency and airtightness.\n• WELL Certification: Focuses on health and wellness in buildings.\n\nThese certifications may apply to the whole building or just your unit, and they are more common in newer construction or major renovations."
+          },
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes" },
+            { "value": 2, "text": "No" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "H2",
+          "text": "Do you or your household donate to any organizations that focus on preserving or protecting natural land (such as land trusts, conservation groups, or reforestation efforts)?",
+          "note": "Examples include The Nature Conservancy, local land trusts, or forest restoration groups.",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes" },
+            { "value": 2, "text": "No" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "H2a",
+          "text": "About how much do you donate to land conservation efforts in a typical year?",
+          "note": "Please include all relevant organizations. Round if unsure.",
+          "type": "currency",
+          "placeholder": "$___ per year",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "H2 == 1"
+        },
+        {
+          "id": "H3",
+          "text": "Do you or your household own or control any land (including a yard, garden, or undeveloped property)?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes" },
+            { "value": 2, "text": "No" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "H4",
+          "text": "How much land do you own, rent or control? (Include lawn, yard, garden, wooded areas, etc.)",
+          "type": "number",
+          "placeholder": "e.g. 0.25",
+          "unit": "acres",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "H3 == 1"
+        },
+        {
+          "id": "H4a",
+          "text": "Would you say",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Less than 0.1 acre (e.g., small yard or patio)" },
+            { "value": 2, "text": "0.1–0.25 acre (typical suburban lot)" },
+            { "value": 3, "text": "0.25–1 acre" },
+            { "value": 4, "text": "1–5 acres" },
+            { "value": 5, "text": "More than 5 acres" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "H4 == 97 OR H4 == 98"
+        },
+        {
+          "id": "H5",
+          "text": "Roughly what percentage of that land is left in a natural or \"wild\" state (e.g., not mowed, landscaped, or heavily maintained)?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "0% (fully maintained or developed)" },
+            { "value": 2, "text": "1–25%" },
+            { "value": 3, "text": "26–50%" },
+            { "value": 4, "text": "51–75%" },
+            { "value": 5, "text": "76–100%" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "H3 == 1"
+        },
+        {
+          "id": "H6",
+          "text": "Do you or your **lawn service** apply chemical pesticides, herbicides or synthetic fertilizers on your property?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes" },
+            { "value": 2, "text": "No" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "H3 == 1"
+        },
+        {
+          "id": "H8",
+          "text": "To approximately how much of your land are they applied?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Spot treatment only" },
+            { "value": 2, "text": "Less than 500 sq ft (e.g., flowerbeds or small garden)" },
+            { "value": 3, "text": "500–2,000 sq ft (e.g., yard, landscaping, small lawn)" },
+            { "value": 4, "text": "2,000–5,000 sq ft" },
+            { "value": 5, "text": "More than 5,000 sq ft" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "H6 == 1"
+        },
+        {
+          "id": "H7",
+          "text": "How many times per year are these applied?",
+          "type": "number",
+          "placeholder": "e.g. 4",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "H6 == 1"
+        },
+        {
+          "id": "H10",
+          "text": "How often do you apply chemical or synthetic fertilizers?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "More than once per month" },
+            { "value": 2, "text": "About once per month" },
+            { "value": 3, "text": "A few times per year (1–4 times)" },
+            { "value": 4, "text": "Once per year or less" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "H9 == 1"
+        },
+        {
+          "id": "H10_land",
+          "text": "To approximately how much of your land are they applied?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Less than 500 sq ft (e.g., flowerbeds or small garden)" },
+            { "value": 2, "text": "500–2,000 sq ft (e.g., yard, landscaping, small lawn)" },
+            { "value": 3, "text": "2,000–5,000 sq ft" },
+            { "value": 4, "text": "More than 5,000 sq ft" },
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "H9 == 1"
+        }
+      ]
+    },
+    {
+      "id": "movement",
+      "title": "MOVEMENT",
+      "subtitle": "The next questions are about the modes of transportation you use.",
+      "questions": [
+        {
+          "id": "M1_percent",
+          "text": "Of all the trips you take in a typical week, what percent are active (meaning walking, biking or taking public transit)?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "0-25%" },
+            { "value": 2, "text": "26-50%" },
+            { "value": 3, "text": "51-75%" },
+            { "value": 4, "text": "76-100%" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "M3",
+          "text": "About how many miles does your household drive in an average month?",
+          "note": "The average U.S. driver logs roughly 1,100–1,200 miles per month, or 36–38 miles per day",
+          "type": "number",
+          "placeholder": "e.g. 1200",
+          "unit": "miles per month",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "M4",
+          "text": "How far is your one-way commute to work or school?",
+          "note": "If your commute varies, please estimate the average distance in miles.",
+          "type": "number",
+          "placeholder": "e.g. 15",
+          "unit": "miles (one-way)",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "M5",
+          "text": "How many days per week do you typically commute to work or school?",
+          "type": "number",
+          "placeholder": "e.g. 5",
+          "validation": {
+            "min": 0,
+            "max": 7,
+            "message": "Must be between 0 and 7"
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "M4 > 0"
+        },
+        {
+          "id": "M6",
+          "text": "What is your primary mode of transportation for commuting?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Gas-powered car or truck (you drive)" },
+            { "value": 2, "text": "Electric vehicle (EV) (you drive)" },
+            { "value": 3, "text": "Plug-in hybrid (you drive)" },
+            { "value": 4, "text": "Motorcycle or scooter" },
+            { "value": 5, "text": "Public transit (bus, train, subway)" },
+            { "value": 6, "text": "Bicycle" },
+            { "value": 7, "text": "Walking" },
+            { "value": 8, "text": "Work from home / do not commute" },
+            { "value": 96, "text": "Other (please specify)", "requiresInput": true },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "M4 > 0"
+        },
+        {
+          "id": "M7",
+          "text": "How many hours have you flown in the past year?",
+          "type": "number",
+          "placeholder": "e.g. 20",
+          "unit": "hours",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "ALL"
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": "COMMUNITY",
+      "questions": [
+        {
+          "id": "C1",
+          "text": "Have you taken our Sustainability Knowledge Test?",
+          "type": "select",
+          "options": [
+            { "value": 1, "text": "Yes, I took your test" },
+            { "value": 2, "text": "No, but I've taken a similar test elsewhere" },
+            { "value": 3, "text": "No, I haven't taken any sustainability knowledge test" },
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        },
+        {
+          "id": "C2",
+          "text": "What score did you receive on our Sustainability Knowledge Test?",
+          "type": "number",
+          "placeholder": "e.g. 85",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "C1 == 1"
+        },
+        {
+          "id": "C3",
+          "text": "What was your score and the total possible points?",
+          "note": "If you remember your percentage instead, you can enter that instead.",
+          "type": "dualInput",
+          "inputs": [
+            { "id": "score", "label": "Score: ___ out of ___", "type": "number" },
+            { "id": "total", "label": "Total: ___", "type": "number" },
+            { "id": "percent", "label": "Percent: ___", "type": "number" }
+          ],
+          "validation": {
+            "mutuallyExclusive": true,
+            "message": "Please provide the amount in either numeric score or percentage, but not both."
+          },
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" },
+            { "value": 98, "text": "Don't know" }
+          ],
+          "askIf": "C1 == 2"
+        },
+        {
+          "id": "C4",
+          "text": "Would you like to take our Sustainability Knowledge Test now?",
+          "type": "link",
+          "linkText": "Click here to take the test",
+          "note": "Opens in a new tab.",
+          "askIf": "C1 == 3 OR C2 == 97 OR C2 == 98 OR C3 == 97 OR C3 == 98"
+        },
+        {
+          "id": "C6",
+          "text": "In the past month, about how many hours have you spent volunteering?",
+          "note": "Include time spent with nonprofits, community groups, environmental organizations, schools, or mutual aid efforts — both in-person and virtual.",
+          "type": "number",
+          "placeholder": "e.g. 10",
+          "unit": "hours",
+          "specialOptions": [
+            { "value": 97, "text": "Web Blank" }
+          ],
+          "askIf": "ALL"
+        }
+      ]
+    }
+  ]
+} 

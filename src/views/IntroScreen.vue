@@ -13,11 +13,11 @@
       <form @submit.prevent="saveName" class="d-flex flex-column align-center">
         <v-text-field
           v-model="inputName"
-          label="Enter your name to begin"
+          label="Enter your name to start"
           required
           variant="outlined"
           class="mb-6"
-          style="max-width: 300px;"
+          style="width: 90%;"
         />
         <v-btn 
           color="primary" 

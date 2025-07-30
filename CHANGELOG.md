@@ -1,5 +1,10 @@
+# Uncle Eric updates this changelog when he accepts a pull request
+
+## 0.0.25
+- Add roadmaps and machine-readable version of questions
+
 ## 0.0.24
-- add 'ideal world' resource usage
+- Add 'ideal world' resource usage
 
 ## 0.0.23
 - Merged in UserInterface branch from Everett, resolved merge conflicts
