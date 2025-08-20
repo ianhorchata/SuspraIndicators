@@ -3,19 +3,35 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { openDB } from 'idb'
 
+import {
+  getAnswersDB,
+  writeData,
+  checkIfInAnswersDB,
+  getValFromAnswersDB,
+  clearAnswersDB,
+  updateData} from '../suspra/db'
+
+import { answerVars } from '@/suspra/answerVars'
+
+const answers = answerVars.MovementViewVars
+
+
 const router = useRouter()
 console.log("hello, running from the top!")
-const m1 = ref(null)
-const m3 = ref('')
-const m4 = ref('')
-const m5 = ref('')
-const m6 = ref(null)
-const m6Other = ref('')
-const m7 = ref('')
+// const m1 = ref(null)
+// const m3 = ref('')
+// const m4 = ref('')
+// const m5 = ref('')
+// const m6 = ref(null)
+// const m6Other = ref('')
+// const m7 = ref('')
 
-const answers = {
-  m1: ref(null),
-  m3: ref('')
+
+
+
+//log answer values:
+for (const [key, value] of Object.entries(answers)) {
+  console.log(key + ": " + value)
 }
 
 const m1Options = [
@@ -51,8 +67,8 @@ async function startOver() {
 
 function onNext() {
   // Save data to IndexedDB (optional, can be expanded)
-  
-
+  writeData(answers)
+  updateData(answers)
   router.push({ name: 'community' })
 }
 function onBack() {
@@ -71,7 +87,7 @@ function onBack() {
         <!-- M1 -->
         <v-select
           v-model="answers.m1"
-          :items="m1Options"
+          :items="m1Options.text"
           label="Of all the trips you take in a typical week, what percent are active (meaning walking, biking or taking public transit)?"
           class="mb-4"
         />
@@ -86,7 +102,7 @@ function onBack() {
         />
         <!-- M4: How far is your one-way commute to work or school? -->
         <v-text-field
-          v-model="m4"
+          v-model="answers.m4"
           label="How far is your one-way commute to work or school? (miles)"
           type="number"
           min="0"
@@ -95,8 +111,8 @@ function onBack() {
         />
         <!-- M5: Only show if M4 > 0 -->
         <v-text-field
-          v-if="m4 && Number(m4) > 0"
-          v-model="m5"
+          v-if="answers.m4 && Number(answers.m4) > 0"
+          v-model="answers.m5"
           label="How many days per week do you typically commute to work or school?"
           type="number"
           min="0"
@@ -106,22 +122,22 @@ function onBack() {
         />
         <!-- M6: Only show if M4 > 0 -->
         <v-select
-          v-if="m4 && Number(m4) > 0"
-          v-model="m6"
+          v-if="answers.m4 && Number(answers.m4) > 0"
+          v-model="answers.m6"
           :items="m6Options"
           label="What is your primary mode of transportation for commuting?"
           class="mb-4"
         />
         <!-- M6 Other: Only show if M6 == 96 -->
         <v-text-field
-          v-if="m6 == 96"
-          v-model="m6Other"
+          v-if="answers.m6 == 96"
+          v-model="answers.m6Other"
           label="Please specify your primary mode of transportation:"
           class="mb-4"
         />
         <!-- M7: How many hours have you flown in the past year? -->
         <v-text-field
-          v-model="m7"
+          v-model="answers.m7"
           label="How many hours have you flown in the past year?"
           type="number"
           min="0"

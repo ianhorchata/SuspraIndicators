@@ -2,12 +2,31 @@
 import { ref, computed, onMounted } from 'vue'
 import { RouterView, RouterLink, useRoute } from 'vue-router'
 import { openDB } from 'idb'
+import { answerVars } from '@/suspra/answerVars.js'
+import { 
+  getAnswersDB,
+  writeData,
+  checkIfInAnswersDB,
+  getValFromAnswersDB,
+  clearAnswersDB,
+  updateData
+} from '@/suspra/db.js'
+import version from '/version.txt?raw'
 
 const route = useRoute()
 const drawer = ref(false)
 const surveyCompleted = ref(false)
 
+//clear database
+console.log("clearing data...")
+clearAnswersDB()
 
+//initilaize databse
+console.log("writing data...")
+for (const [key, value] of Object.entries(answerVars)) {
+  console.log("Processing answer data for:", key)
+  writeData(value)
+}
 
 // Check if survey has been completed by looking for data in IndexedDB
 async function checkSurveyCompletion() {
@@ -62,10 +81,8 @@ const pathwayItems = [
   { to: '/user', label: 'User' },
 ]
 
-onMounted(checkSurveyCompletion)
 
-// Import version from version.txt using Vite's raw import
-import version from '../version.txt?raw'
+onMounted(checkSurveyCompletion)
 </script>
 
 <template>
